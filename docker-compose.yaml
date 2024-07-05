@@ -1,0 +1,32 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./backend      
+    ports:
+      - "3000:4000"
+    environment:
+      - PORT=4000
+    depends_on:
+      - mongo
+  frontend:
+    build: 
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  mongo:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1234
+      - MONGODB_URI=mongodb://root:1234@mongo:27017/?authSource=admin
+    volumes:
+      - mongo-db:/data/db
+volumes:
+  mongo-db:
