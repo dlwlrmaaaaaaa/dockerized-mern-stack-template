@@ -51,7 +51,9 @@ CMD ["npm", "run", "dev"]
 ### Step 2: Create Dockerfile for Backend 
 In the `Backend` directory, create a `Dockerfile` with the following content:
 
-```FROM node:18
+```dockerfile
+
+FROM node:18
 
 WORKDIR /app
 
@@ -71,7 +73,8 @@ CMD ["node", "index.js"]
 
 ### Step 3: In the project root directory, create a docker-compose.yml file with the following content:
 
-```version: '3'
+```dockerfile
+version: '3'
 services:
   backend:
     build:
@@ -107,7 +110,8 @@ volumes:
 ### Step 4: In the project root directory, create a docker-compose.dev.yml file with the following content:
 
 
-```version: '3'
+```dockerfile
+version: '3'
 services:
   backend:
     build:
@@ -146,10 +150,13 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 
 ### Step 6: Access the application
 ##for frontend
+```sh
 http://localhost:5173
+```
 ## for backend
+```sh
 http://localhost:3000/api
-
+```
 
 
 
