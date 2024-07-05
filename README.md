@@ -44,12 +44,14 @@ EXPOSE 5173
 
 # Start the application.
 CMD ["npm", "run", "dev"]
+```
 
 
 
 ### Step 2: Create Dockerfile for Backend 
 In the `Backend` directory, create a `Dockerfile` with the following content:
-FROM node:18
+
+```FROM node:18
 
 WORKDIR /app
 
@@ -65,10 +67,11 @@ COPY . .
 ENV PORT=3000
 EXPOSE $PORT
 CMD ["node", "index.js"]
+```
 
 ### Step 3: In the project root directory, create a docker-compose.yml file with the following content:
 
-version: '3'
+```version: '3'
 services:
   backend:
     build:
@@ -100,11 +103,11 @@ services:
       - mongo-db:/data/db
 volumes:
   mongo-db:
-
+```
 ### Step 4: In the project root directory, create a docker-compose.dev.yml file with the following content:
 
 
-version: '3'
+```version: '3'
 services:
   backend:
     build:
@@ -136,7 +139,7 @@ services:
       - mongo-db:/data/db
 volumes:
   mongo-db:
-
+```
 ### Step 5: Navigate to the project root directory and run the following command to build and start the Docker containers:
 
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
